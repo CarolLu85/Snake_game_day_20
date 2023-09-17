@@ -1,6 +1,6 @@
 from turtle import Turtle, Screen
 import random
-from snake_game import SnakeGame
+
 screen = Screen()
 SNAKE_COORDINATES = [(0, 0), (-20, 0), (-40, 0)]
 MOVE_DISTANCE = 20
@@ -9,25 +9,17 @@ DOWN = 270
 LEFT = 180
 RIGHT = 0
 
-class SnakeMove:
-    def __init__(self, food):
+class Snake:
+    def __init__(self):
         self.snake_objects_list = []
         self.create_snake_objects()
         self.head = self.snake_objects_list[0]
-        self.food = food
+        self.head.speed(1)
 
 
 
     def create_snake_objects(self):
-        # creating 3 snakes(Objects)
-        # x = 0
-        # y = 0
-        # for i in range(3):
-        #     snake = Turtle("square")
-        #     snake.color("white")
-        #     snake.shapesize(2,2)
-        #     snake.goto(x, y)
-        #     x -= 20
+
         for index in SNAKE_COORDINATES:
             snake_object = Turtle("square")
             snake_object.color("white")
@@ -45,18 +37,6 @@ class SnakeMove:
 
         self.head.forward(MOVE_DISTANCE)
 
-
-    # def move_new(self):
-        # snake_objects_list[2].goto(0, snake_objects_list[0].ycor() + 20)
-        # snake_objects_list[2].left(90)
-        # snake_objects_list[2].forward(20)
-        # snake_objects_list[0].left(90)
-        # snake_objects_list[0].forward(20)
-        # snake_objects_list[1].forward(20)
-        # snake_objects_list[1].left(90)
-        # this is just an idea that only move the tail square to the aimed position. like for left turn, i can just move the third one
-        # above the first one. to achieve this, it needs to change the index of the objects  in the list each time, it require some
-        # sort of data structure skill which i haven't touched yet.
 
     def left(self):
         if self.head.heading() != RIGHT:
@@ -79,12 +59,11 @@ class SnakeMove:
 
 
     def eat_food(self, food):
-        food.clear()
+        food.hideturtle()
         new_snake_object = Turtle("square")
         new_snake_object.color("white")
-        new_snake_object.goto(food)
-        self.snake_objects_list.insert(0,new_snake_object)
-        self.snake_objects_list[0] = new_snake_object
+        new_snake_object.goto(food.xcor(), food.ycor())
+        self.snake_objects_list.insert(0, new_snake_object)
 
 
     def next_step(self):
