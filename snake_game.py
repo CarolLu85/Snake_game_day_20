@@ -1,48 +1,25 @@
-from turtle import Turtle, Screen
-import time
-screen = Screen()
-screen.setup(width=600, height=600)
-screen.bgcolor("black")
-screen.title("Snake Game")
-screen.tracer(0)
-
-snake_coordinates = [(0, 0), (-20, 0), (-40, 0)]
-#creating 3 snakes(Objects)
-# x = 0
-# y = 0
-# for i in range(3):
-#     snake = Turtle("square")
-#     snake.color("white")
-#     snake.shapesize(2,2)
-#     snake.goto(x, y)
-#     x -= 20
-snake_objects_list = []
-for index in snake_coordinates:
-    snake_object = Turtle("square")
-    snake_object.color("white")
-    snake_object.penup()
-    snake_object.goto(index)
-    position = snake_object.position()
-    print(position)
-    snake_objects_list.append(snake_object)
-
-game_on = True
-while game_on:
-    screen.update()
-    time.sleep(0.1)
+from turtle import Turtle
+from snake import SnakeMove
+import random
+class SnakeGame:
+    def __init__(self):
+        self.snake = SnakeMove()
+        self.create_food()
 
 
-
-# snake_objects_list[2].goto(0, snake_objects_list[0].ycor() + 20)
-# snake_objects_list[2].left(90)
-# snake_objects_list[2].forward(20)
-# snake_objects_list[0].left(90)
-# snake_objects_list[0].forward(20)
-# snake_objects_list[1].forward(20)
-# snake_objects_list[1].left(90)
-
+    def create_food(self):
+        self.food = Turtle("square")
+        self.food.color("pink")
+        self.food.penup()
+        self.food.goto(random.randint(-300, 300), random.randint(-300, 300))
+        self.x = self.food.xcor()
+        self.y = self.food.ycor()
 
 
+    def game_over(self, x, y):
+        game_over = False
+        if abs(x) == 290 or abs(y) == 290:
+            game_over = True
+            print("You lose")
+            return game_over
 
-
-screen.exitonclick()
