@@ -22,26 +22,31 @@ screen.onkey(snake.down, "Down")
 screen.onkey(snake.left, "Left")
 screen.onkey(snake.right, "Right")
 game_is_on = True
-points = 0
+
 
 while game_is_on:
     snake.move()
     screen.update()
-    time.sleep(0.5)
+    time.sleep(0.7)
 # detect collision with food
     if snake.head.distance(food) < 15:
         scoreboard.clear()
-        print("nom,nom,nom")
-        x = food.xcor()
-        y = food.ycor()
-        points += 1
-        scoreboard.calculate_scores(points)
         food.refresh()
-        snake.new_head(x, y)
-        time.sleep(0.5)
+        snake.new()
+        scoreboard.calculate_score()
+        snake.new()
+        # time.sleep(0.1)
 
+    if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
+        game_is_on = False
+        scoreboard.game_over()
 
-
+    for each_square in snake.snake_objects_list:
+        if each_square == snake.head:
+            pass
+        elif snake.head.distance(each_square) < 10:
+            game_is_on = False
+            scoreboard.game_over()
 
 
 screen.exitonclick()

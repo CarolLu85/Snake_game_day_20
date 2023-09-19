@@ -31,7 +31,6 @@ class Snake:
             x = self.snake_objects_list[object_index - 1].xcor()
             y = self.snake_objects_list[object_index - 1].ycor()
             self.snake_objects_list[object_index].goto(x, y)
-
         self.head.forward(MOVE_DISTANCE)
 
 
@@ -55,23 +54,12 @@ class Snake:
             self.head.setheading(DOWN)
 
 
-    def new_head(self, x, y):
-        x = self.head.xcor()
-        y = self.head.ycor()
-        new_head = Turtle("square")
-        new_head.color("white")
-        new_head.penup()
-        print("created")
-        new_heading = self.head.heading()
-        if new_heading == 0:
-            new_head.goto(x + 20, y)
-        elif new_heading == 90:
-            new_head.goto(x, y + 20)
-        elif new_heading == 180:
-            new_head.goto(x - 20, y)
-        elif new_heading == 270:
-            new_head.goto(x, y - 20)
-        self.snake_objects_list.insert(0, new_head)
+    def new(self):
+        new = Turtle("square")
+        new.color("white")
+        new.penup()
+        new.goto(self.snake_objects_list[-1].position())
+        self.snake_objects_list.append(new)
 
 
 
