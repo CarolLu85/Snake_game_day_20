@@ -39,10 +39,10 @@ while game_is_on:
         game_is_on = False
         scoreboard.game_over()
 
-    for each_square in snake.snake_objects_list:
-        if each_square == snake.head:
-            pass
-        elif snake.head.distance(each_square) < 10:
+    for each_square in snake.snake_objects_list[1:]:
+        # if each_square == snake.head:
+        #     pass
+        if snake.head.distance(each_square) < 10:
             game_is_on = False
             scoreboard.game_over()
 
