@@ -14,9 +14,6 @@ class Snake:
         self.snake_objects_list = []
         self.create_snake_objects()
         self.head = self.snake_objects_list[0]
-        self.head.speed(1)
-
-
 
     def create_snake_objects(self):
 
@@ -58,15 +55,24 @@ class Snake:
             self.head.setheading(DOWN)
 
 
-    def eat_food(self, food):
-        food.hideturtle()
-        new_snake_object = Turtle("square")
-        new_snake_object.color("white")
-        new_snake_object.goto(food.xcor(), food.ycor())
-        self.snake_objects_list.insert(0, new_snake_object)
+    def new_head(self, x, y):
+        x = self.head.xcor()
+        y = self.head.ycor()
+        new_head = Turtle("square")
+        new_head.color("white")
+        new_head.penup()
+        print("created")
+        new_heading = self.head.heading()
+        if new_heading == 0:
+            new_head.goto(x + 20, y)
+        elif new_heading == 90:
+            new_head.goto(x, y + 20)
+        elif new_heading == 180:
+            new_head.goto(x - 20, y)
+        elif new_heading == 270:
+            new_head.goto(x, y - 20)
+        self.snake_objects_list.insert(0, new_head)
 
 
-    def next_step(self):
-        head_x = self.head.xcor()
-        head_y = self.head.ycor()
-        return head_x, head_y
+
+
