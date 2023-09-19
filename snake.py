@@ -70,6 +70,7 @@ class Snake:
     #     new_head.penup()
     #     print("created")
     #     new_heading = self.head.heading()
+    #     print(new_heading)
     #     if new_heading == 0:
     #         new_head.goto(x + 20, y)
     #     elif new_heading == 90:
@@ -79,5 +80,6 @@ class Snake:
     #     elif new_heading == 270:
     #         new_head.goto(x, y - 20)
     #     self.snake_objects_list.insert(0, new_head)
+    #     self.head.setheading(new_heading)
     #     self.head = new_head
     #     new_head = self.snake_objects_list[0]

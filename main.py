@@ -27,7 +27,7 @@ game_is_on = True
 while game_is_on:
     snake.move()
     screen.update()
-    time.sleep(0.7)
+    time.sleep(0.4)
 # detect collision with food
     if snake.head.distance(food) < 15:
         scoreboard.clear()
