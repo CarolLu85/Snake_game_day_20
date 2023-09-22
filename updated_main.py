@@ -1,7 +1,7 @@
 from turtle import Screen
-from snake import Snake
+from update_snake import Snake
 import time
-from scoreboard import ScoreBoard
+from updated_scoreboard import ScoreBoard
 from food import Food
 
 
