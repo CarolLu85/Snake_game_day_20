@@ -61,24 +61,9 @@ class Snake:
         self.snake_objects_list.append(new)
 
 
-    # def new_head(self):
-    #     x = self.head.xcor()
-    #     y = self.head.ycor()
-    #     new_head = Turtle("square")
-    #     new_head.color("white")
-    #     new_head.penup()
-    #     print("created")
-    #     new_heading = self.head.heading()
-    #     print(new_heading)
-    #     if new_heading == 0:
-    #         new_head.goto(x + 20, y)
-    #     elif new_heading == 90:
-    #         new_head.goto(x, y + 20)
-    #     elif new_heading == 180:
-    #         new_head.goto(x - 20, y)
-    #     elif new_heading == 270:
-    #         new_head.goto(x, y - 20)
-    #     self.snake_objects_list.insert(0, new_head)
-    #     self.head.setheading(new_heading)
-    #     self.head = new_head
-    #     new_head = self.snake_objects_list[0]
+    def reset(self):
+        for seg in self.snake_objects_list:
+            seg.goto(1000, 1000)
+        self.snake_objects_list.clear()
+        self.create_snake_objects()
+        self.head = self.snake_objects_list[0]
